@@ -63,7 +63,7 @@ func ProcessJournal(c chan journald.JournalEntry, brokers string, topic string) 
 
 		err := LoadProducers(brokers, topic)
 		if err != nil {
-			log.Println("unable to load connect to kafka", err)
+			log.Println("unable to connect to kafka", err)
 			return
 		}
 
