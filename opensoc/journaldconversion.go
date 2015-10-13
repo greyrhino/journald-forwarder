@@ -1,4 +1,4 @@
-package loggly
+package opensoc
 
 import (
 	"encoding/json"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func ProcessJournal(c chan journald.JournalEntry, uri string) {
+func ProcessJournal(c chan journald.JournalEntry, broker string, topic string) {
 	for msg := range c {
 
 		loggly_entry := JournalEntry{
@@ -62,7 +62,7 @@ func ProcessJournal(c chan journald.JournalEntry, uri string) {
 		if err != nil {
 
 		} else {
-			SendEvent(string(json_entry)[:], uri)
+			SendEvent(string(json_entry)[:], broker, topic)
 		}
 	}
 }

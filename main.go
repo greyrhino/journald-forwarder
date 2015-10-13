@@ -2,8 +2,9 @@ package main
 
 import (
 	"flag"
-	"github.com/uswitch/journald-forwarder/journald"
-	"github.com/uswitch/journald-forwarder/loggly"
+	"github.com/fxfitz/journald-forwarder/journald"
+	"github.com/fxfitz/journald-forwarder/loggly"
+	"github.com/fxfitz/journald-forwarder/opensoc"
 	"log"
 	"os"
 	"runtime"
@@ -13,12 +14,22 @@ import (
 var token = flag.String("token", "", "Loggly Token")
 var logFile = flag.String("logfile", "/var/log/journald-forwarder.log", "Path to log file to write")
 var tag = flag.String("tag", "", "What tag to use on Loggly")
+var broker = flag.String("broker", "", "Kafka Broker")
+var topic = flag.String("topic", "", "Kafka Topic")
 
 func main() {
 	flag.Parse()
 
 	if *token == "" {
 		log.Fatalf("-token is required.")
+	}
+
+	if *broker == "" {
+		log.Fatalf("-broker is required.")
+	}
+
+	if *topic == "" {
+		log.Fatalf("-topic is required.")
 	}
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
@@ -35,6 +46,7 @@ func main() {
 	uri := loggly.GenerateUri(*token, *tag)
 	go journald.CollectJournal(c)
 	go loggly.ProcessJournal(c, uri)
+	go opensoc.ProcessJournal(c, broker, topic)
 
 	for {
 		time.Sleep(1 * time.Second)
