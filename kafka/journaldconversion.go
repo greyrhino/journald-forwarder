@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func ProcessJournal(c chan journald.JournalEntry, broker string, topic string) {
+func ProcessJournal(c chan journald.JournalEntry, brokers string, topic string) {
 	for msg := range c {
 
 		loggly_entry := JournalEntry{
@@ -59,6 +59,6 @@ func ProcessJournal(c chan journald.JournalEntry, broker string, topic string) {
 			SyslogIdentifier:        msg.SyslogIdentifier,
 		}
 		json_entry, _ := json.Marshal(loggly_entry)
-		SendEvent(string(json_entry), broker, topic)
+		// SendEvent(string(json_entry), broker, topic)
 	}
 }
