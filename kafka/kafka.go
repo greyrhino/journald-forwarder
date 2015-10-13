@@ -60,16 +60,17 @@ func newAsyncKafkaProducer(brokers []string) (sarama.AsyncProducer, error) {
 	return sarama.NewAsyncProducer(brokers, config)
 }
 
-// readConfigs looks at environment variables to parse Kafka brokers and
+// readConfigs takes argument variables to parse Kafka brokers and
 // topics. Each producer requires both a broker and topic, although you can
 // provide multiple brokers in a comma-delimited list. You can provide an
-// arbitrary number of producers, with incrementing integers starting at 1.
+// arbitrary number of producers.
 //
 // Example:
-//     KAFKA_BROKERS_1="192.168.100.50:9092"
-//     KAFKA_TOPIC_1="t1"
-//     KAFKA_BROKERS_2="192.168.100.51:9092,192.168.100.52:9092"
-//     KAFKA_TOPIC_2="t2"
+//     brokers="192.168.100.50:9092"
+//     ... or ...
+//     brokers="192.168.100.51:9092,192.168.100.52:9092"
+//
+//	   topic="awesomeness"
 func readConfigs(brokers string, topic string) []producerConfig {
 	configs := make([]producerConfig, 0)
 
