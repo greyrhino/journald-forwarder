@@ -46,7 +46,7 @@ func main() {
 	uri := loggly.GenerateUri(*token, *tag)
 	go journald.CollectJournal(c)
 	go loggly.ProcessJournal(c, uri)
-	go opensoc.ProcessJournal(c, broker, topic)
+	go kafka.ProcessJournal(c, broker, topic)
 
 	for {
 		time.Sleep(1 * time.Second)

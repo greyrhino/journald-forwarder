@@ -1,4 +1,4 @@
-package opensoc
+package kafka
 
 import (
 	"encoding/json"
