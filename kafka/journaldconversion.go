@@ -60,7 +60,6 @@ func ProcessJournal(c chan journald.JournalEntry, brokers string, topic string) 
 			SyslogIdentifier:        msg.SyslogIdentifier,
 		}
 		json_entry, _ := json.Marshal(loggly_entry)
-		// SendEvent(string(json_entry), broker, topic)
 
 		err := LoadProducers(brokers, topic)
 		if err != nil {
