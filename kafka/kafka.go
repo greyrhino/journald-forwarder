@@ -1,9 +1,7 @@
 package kafka
 
 import (
-	"fmt"
 	sarama "gopkg.in/Shopify/sarama.v1"
-	"os"
 	"strings"
 )
 
