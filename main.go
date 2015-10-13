@@ -4,7 +4,7 @@ import (
 	"flag"
 	"github.com/fxfitz/journald-forwarder/journald"
 	"github.com/fxfitz/journald-forwarder/loggly"
-	"github.com/fxfitz/journald-forwarder/opensoc"
+	"github.com/fxfitz/journald-forwarder/kafka"
 	"log"
 	"os"
 	"runtime"
