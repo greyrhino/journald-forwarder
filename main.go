@@ -14,7 +14,7 @@ import (
 var token = flag.String("token", "", "Loggly Token")
 var logFile = flag.String("logfile", "/var/log/journald-forwarder.log", "Path to log file to write")
 var tag = flag.String("tag", "", "What tag to use on Loggly")
-var broker = flag.String("brokers", "", "Kafka Brokers")
+var brokers = flag.String("brokers", "", "Kafka Brokers")
 var topic = flag.String("topic", "", "Kafka Topic")
 
 func main() {
