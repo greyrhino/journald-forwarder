@@ -14,10 +14,16 @@ type producerWithTopic struct {
 	Topic    string
 }
 
-// LoadProducers reads the provided environment variables and connects to the
-// specified Kafka brokers, preparing asynchronous producers. If we fail to
-// connect to any of the Kafka brokers, we return an error.
+// LoadProducers connects to the specified Kafka brokers,
+// preparing asynchronous producers. If we fail to connect
+// to any of the Kafka brokers, we return an error.
 func LoadProducers(brokers string, topic string) error {
+
+	// End early, because producers were already loaded
+	if len(producers) != 0 {
+		return nil
+	}
+
 	configs := readConfigs(brokers, topic)
 	producers = make([]producerWithTopic, len(configs))
 
