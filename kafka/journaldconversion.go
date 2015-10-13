@@ -58,11 +58,7 @@ func ProcessJournal(c chan journald.JournalEntry, broker string, topic string) {
 			SyslogFacility:          msg.SyslogFacility,
 			SyslogIdentifier:        msg.SyslogIdentifier,
 		}
-		json_entry, err := json.Marshal(loggly_entry)
-		if err != nil {
-
-		} else {
-			SendEvent(string(json_entry)[:], broker, topic)
-		}
+		json_entry, _ := json.Marshal(loggly_entry)
+		SendEvent(string(json_entry), broker, topic)
 	}
 }
