@@ -14,7 +14,7 @@ import (
 var token = flag.String("token", "", "Loggly Token")
 var logFile = flag.String("logfile", "/var/log/journald-forwarder.log", "Path to log file to write")
 var tag = flag.String("tag", "", "What tag to use on Loggly")
-var broker = flag.String("broker", "", "Kafka Broker")
+var broker = flag.String("brokers", "", "Kafka Brokers")
 var topic = flag.String("topic", "", "Kafka Topic")
 
 func main() {
@@ -24,8 +24,8 @@ func main() {
 		log.Fatalf("-token is required.")
 	}
 
-	if *broker == "" {
-		log.Fatalf("-broker is required.")
+	if *brokers == "" {
+		log.Fatalf("-brokers is required.")
 	}
 
 	if *topic == "" {
@@ -46,7 +46,7 @@ func main() {
 	uri := loggly.GenerateUri(*token, *tag)
 	go journald.CollectJournal(c)
 	go loggly.ProcessJournal(c, uri)
-	go kafka.ProcessJournal(c, broker, topic)
+	go kafka.ProcessJournal(c, brokers, topic)
 
 	for {
 		time.Sleep(1 * time.Second)
