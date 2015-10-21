@@ -8,7 +8,6 @@ type JournalEntry struct {
 	Gid                     int       `json:"gid,omitempty"`
 	Comm                    string    `json:"appName,omitempty"`
 	Exe                     string    `json:"exe,omitempty"`
-	Cmdline                 string    `json:"cmdline,omitempty"`
 	CapEffective            string    `json:"capEffective,omitempty"`
 	AuditSession            int       `json:"auditSession,omitempty"`
 	AuditLoginId            string    `json:"auditLoginId,omitempty"`

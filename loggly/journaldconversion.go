@@ -2,7 +2,7 @@ package loggly
 
 import (
 	"encoding/json"
-	"github.com/uswitch/journald-forwarder/journald"
+	"github.com/fxfitz/journald-forwarder/journald"
 	"time"
 )
 
@@ -15,7 +15,6 @@ func ProcessJournal(c chan journald.JournalEntry, uri string) {
 			Gid:                     msg.Gid,
 			Comm:                    msg.Comm,
 			Exe:                     msg.Exe,
-			Cmdline:                 msg.Cmdline,
 			CapEffective:            msg.CapEffective,
 			AuditSession:            msg.AuditSession,
 			AuditLoginId:            msg.AuditLoginId,

@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"github.com/uswitch/journald-forwarder/journald"
-	"github.com/uswitch/journald-forwarder/loggly"
+	"github.com/fxfitz/journald-forwarder/journald"
+	"github.com/fxfitz/journald-forwarder/loggly"
 	"log"
 	"os"
 	"runtime"
