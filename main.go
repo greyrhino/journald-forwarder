@@ -2,12 +2,13 @@ package main
 
 import (
 	"flag"
-	"github.com/fxfitz/journald-forwarder/journald"
-	"github.com/fxfitz/journald-forwarder/loggly"
 	"log"
 	"os"
 	"runtime"
 	"time"
+
+	"github.com/greyrhino/journald-forwarder/journald"
+	"github.com/greyrhino/journald-forwarder/loggly"
 )
 
 var token = flag.String("token", "", "Loggly Token")

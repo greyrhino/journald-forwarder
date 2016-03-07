@@ -2,8 +2,9 @@ package loggly
 
 import (
 	"encoding/json"
-	"github.com/fxfitz/journald-forwarder/journald"
 	"time"
+
+	"github.com/greyrhino/journald-forwarder/journald"
 )
 
 func ProcessJournal(c chan journald.JournalEntry, uri string) {

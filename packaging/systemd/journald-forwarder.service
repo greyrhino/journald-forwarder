@@ -3,7 +3,7 @@ Description=Forward journald logs to Loggly
 After=docker.service
 
 [Service]
-ExecStartPre=-/bin/mkdir -pv /opt/fxfitz/journald-forwarder
-ExecStartPre=-/usr/bin/curl -L -o /opt/fxfitz/journald-forwarder/journald-forwarder https://github.com/fxfitz/journald-forwarder/releases/download/v0.3/journald-forwarder
-ExecStartPre=-/bin/chmod +x /opt/fxfitz/journald-forwarder/journald-forwarder
-ExecStart=/opt/fxfitz/journald-forwarder/journald-forwarder -token [token] -tag [tag]
+ExecStartPre=-/bin/mkdir -pv /opt/greyrhino/journald-forwarder
+ExecStartPre=-/usr/bin/curl -L -o /opt/greyrhino/journald-forwarder/journald-forwarder https://github.com/greyrhino/journald-forwarder/releases/download/v0.3/journald-forwarder
+ExecStartPre=-/bin/chmod +x /opt/greyrhino/journald-forwarder/journald-forwarder
+ExecStart=/opt/greyrhino/journald-forwarder/journald-forwarder -token [token] -tag [tag]
